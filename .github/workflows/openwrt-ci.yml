@@ -9,19 +9,17 @@ name: OpenWrt-CI
 
 on:
   schedule:
-    - cron: 0 20 * * *
+    - cron: 0 10 * * *
 
 permissions:
   contents: read
 
 jobs:
-
   build_openwrt:
-
     name: Build OpenWrt Firmware
-
     runs-on: ubuntu-latest
-
+    env:
+      TZ: Asia/Shanghai
     steps:
       - name: Space cleanup and Initialization environment
         env:
