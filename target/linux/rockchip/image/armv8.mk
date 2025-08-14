@@ -22,6 +22,16 @@ define Device/ariaboard_photonicat
 endef
 TARGET_DEVICES += ariaboard_photonicat
 
+define Device/ariaboard_photonicat2
+  DEVICE_VENDOR := Ariaboard
+  DEVICE_MODEL := Photonicat 2
+  SOC := rk3576
+  DEVICE_DTS := rockchip/rk3576-photonicat2
+  UBOOT_DEVICE_NAME := evb-rk3576
+  IMAGE/sysupgrade.img.gz := boot-common | boot-script rk3576 | pine64-img | gzip | append-metadata
+endef
+TARGET_DEVICES += ariaboard_photonicat2
+
 define Device/armsom_sige1
   DEVICE_VENDOR := ArmSoM
   DEVICE_MODEL := Sige1
@@ -264,6 +274,17 @@ define Device/friendlyarm_nanopi-r6s
 endef
 TARGET_DEVICES += friendlyarm_nanopi-r6s
 
+define Device/friendlyarm_nanopi-r76s
+  DEVICE_VENDOR := FriendlyARM
+  DEVICE_MODEL := NanoPi R76S
+  SOC := rk3576
+  DEVICE_DTS := rockchip/rk3576-nanopi-r76s
+  UBOOT_DEVICE_NAME := evb-rk3576
+  DEVICE_PACKAGES := kmod-gpio-button-hotplug kmod-r8125
+  IMAGE/sysupgrade.img.gz := boot-common | boot-script rk3576 | pine64-img | gzip | append-metadata
+endef
+TARGET_DEVICES += friendlyarm_nanopi-r76s
+
 define Device/firefly_station-p2
   DEVICE_VENDOR := Firefly
   DEVICE_MODEL := Station P2
@@ -354,6 +375,16 @@ define Device/mmbox_anas3035
 endef
 TARGET_DEVICES += mmbox_anas3035
 
+define Device/nlnet_xiguapi-v3
+  DEVICE_VENDOR := NLnet
+  DEVICE_MODEL := XiGuaPi V3
+  SOC := rk3568
+  UBOOT_DEVICE_NAME := generic-rk3568
+  IMAGE/sysupgrade.img.gz := boot-common | boot-script | pine64-img | gzip | append-metadata
+  DEVICE_PACKAGES := kmod-hwmon-pwmfan
+endef
+TARGET_DEVICES += nlnet_xiguapi-v3
+
 define Device/panther_x2
   DEVICE_VENDOR := Panther
   DEVICE_MODEL := X2
@@ -403,6 +434,15 @@ define Device/radxa_rock-3a
 endef
 TARGET_DEVICES += radxa_rock-3a
 
+define Device/radxa_rock-3b
+  DEVICE_VENDOR := Radxa
+  DEVICE_MODEL := ROCK 3B
+  SOC := rk3568
+  UBOOT_DEVICE_NAME := rock-3b-rk3568
+  IMAGE/sysupgrade.img.gz := boot-common | boot-script | pine64-img | gzip | append-metadata
+endef
+TARGET_DEVICES += radxa_rock-3b
+
 define Device/radxa_rock-3c
   DEVICE_VENDOR := Radxa
   DEVICE_MODEL := ROCK 3C
@@ -432,15 +472,15 @@ define Device/radxa_rock-5a
 endef
 TARGET_DEVICES += radxa_rock-5a
 
-define Device/rongpin_king3399
-  DEVICE_VENDOR := Rongpin
-  DEVICE_MODEL := King3399
-  SOC := rk3399
-  UBOOT_DEVICE_NAME := king3399-rk3399
+define Device/radxa_rock-5b
+  DEVICE_VENDOR := Radxa
+  DEVICE_MODEL := ROCK 5B
+  SOC := rk3588
+  UBOOT_DEVICE_NAME := rock5b-rk3588
   IMAGE/sysupgrade.img.gz := boot-common | boot-script | pine64-img | gzip | append-metadata
-  DEVICE_PACKAGES := kmod-r8168 kmod-brcmfmac cypress-firmware-4356-sdio wpad-openssl
+  DEVICE_PACKAGES := kmod-r8125-rss kmod-hwmon-pwmfan
 endef
-TARGET_DEVICES += rongpin_king3399
+TARGET_DEVICES += radxa_rock-5b
 
 define Device/rocktech_mpc1903
   DEVICE_VENDOR := Rocktech
@@ -452,13 +492,24 @@ define Device/rocktech_mpc1903
 endef
 TARGET_DEVICES += rocktech_mpc1903
 
+define Device/rongpin_king3399
+  DEVICE_VENDOR := Rongpin
+  DEVICE_MODEL := King3399
+  SOC := rk3399
+  UBOOT_DEVICE_NAME := king3399-rk3399
+  IMAGE/sysupgrade.img.gz := boot-common | boot-script | pine64-img | gzip | append-metadata
+  DEVICE_PACKAGES := kmod-r8168 kmod-brcmfmac cypress-firmware-4356-sdio wpad-openssl
+endef
+TARGET_DEVICES += rongpin_king3399
+
 define Device/rumu3f_fine-3399
   DEVICE_VENDOR := RUMU3F
   DEVICE_MODEL := FINE 3399
   SOC := rk3399
   UBOOT_DEVICE_NAME := fine3399-rk3399
   IMAGE/sysupgrade.img.gz := boot-common | boot-script | pine64-img | gzip | append-metadata
-  DEVICE_PACKAGES := kmod-gpio-button-hotplug kmod-r8168
+  DEVICE_PACKAGES := brcmfmac-firmware-43430b0-sdio brcmfmac-nvram-43430b0-sdio \
+	kmod-brcmfmac kmod-gpio-button-hotplug kmod-usb-net-rtl8152 wpad
 endef
 TARGET_DEVICES += rumu3f_fine-3399
 
@@ -565,13 +616,13 @@ define Device/widora_mangopi-m28
   SOC := rk3528
   UBOOT_DEVICE_NAME := generic-rk3528
   IMAGE/sysupgrade.img.gz := boot-common | boot-script rk3528 | pine64-img | gzip | append-metadata
-  DEVICE_PACKAGES := kmod-aic8800s kmod-r8168 wpad-openssl -urngd
+  DEVICE_PACKAGES := kmod-aic8800s wpad-openssl -urngd
 endef
 
 define Device/widora_mangopi-m28c
 $(call Device/widora_mangopi-m28)
   DEVICE_MODEL := MangoPi M28C
-  DEVICE_PACKAGES += kmod-gpio-button-hotplug kmod-usb-serial-option
+  DEVICE_PACKAGES += kmod-usb-serial-option
 endef
 TARGET_DEVICES += widora_mangopi-m28c
 
